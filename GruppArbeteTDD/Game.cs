@@ -24,31 +24,35 @@ namespace GruppArbeteTDD
                 {
                     case ConsoleKey.W:
                     case ConsoleKey.UpArrow:
-                        temp.X = player.CurrPos.X;
-                        temp.Y = player.CurrPos.Y;
-                        temp.X--;
-                        gb.PlayerMove(player.CurrPos, temp);
+                        Point tempA = new Point();
+                        tempA.X = player.CurrPos.X;
+                        tempA.Y = player.CurrPos.Y;
+                        tempA.X--;
+                        gb.PlayerMove(player.CurrPos, tempA);
                         break;
                     case ConsoleKey.A:
                     case ConsoleKey.LeftArrow:
-                        temp.X = player.CurrPos.X;
-                        temp.Y = player.CurrPos.Y;
-                        temp.Y--;
-                        gb.PlayerMove(player.CurrPos, temp);
+                        Point tempB = new Point();
+                        tempB.X = player.CurrPos.X;
+                        tempB.Y = player.CurrPos.Y;
+                        tempB.X--;
+                        gb.PlayerMove(player.CurrPos, tempB);
                         break;
                     case ConsoleKey.S:
                     case ConsoleKey.DownArrow:
-                        temp.X = player.CurrPos.X;
-                        temp.Y = player.CurrPos.Y;
-                        temp.X++;
-                        gb.PlayerMove(player.CurrPos, temp);
+                        Point tempC = new Point();
+                        tempC.X = player.CurrPos.X;
+                        tempC.Y = player.CurrPos.Y;
+                        tempC.X--;
+                        gb.PlayerMove(player.CurrPos, tempC);
                         break;
                     case ConsoleKey.D:
                     case ConsoleKey.RightArrow:
-                        temp.X = player.CurrPos.X;
-                        temp.Y = player.CurrPos.Y;
-                        temp.Y++;
-                        gb.PlayerMove(player.CurrPos, temp);
+                        Point tempD = new Point();
+                        tempD.X = player.CurrPos.X;
+                        tempD.Y = player.CurrPos.Y;
+                        tempD.X--;
+                        gb.PlayerMove(player.CurrPos, tempD);
                         break;
                 }
                 Console.Clear();

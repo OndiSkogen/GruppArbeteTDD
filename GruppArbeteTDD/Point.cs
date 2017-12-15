@@ -19,5 +19,10 @@ namespace GruppArbeteTDD
             this.x = _x;
             this.y = _y;
         }
+
+        public Point()
+        {
+
+        }
     }
 }

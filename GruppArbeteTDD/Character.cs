@@ -26,9 +26,10 @@ namespace GruppArbeteTDD
         }
 
 
-        public void IncreaseX()
+        public Point IncreaseX()
         {
             currPos.X++;
+            
         }
 
         public void DecreaseX()

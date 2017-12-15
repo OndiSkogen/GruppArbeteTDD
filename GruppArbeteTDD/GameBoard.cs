@@ -45,13 +45,16 @@ namespace GruppArbeteTDD
         {
             if (OnCollision(move))
             {
+                gameBoard[old.X, old.Y] = 0;
                 gameBoard[move.X, move.Y] = 2;
+                old.X = move.X;
+                old.Y = move.Y;
             }            
         }
 
         public void RemoveOldPlayer(Point p)
         {
-            gameBoard[p.X, p.Y] = 0;
+            
         }
 
         public bool OnCollision(Point p)
@@ -73,7 +76,7 @@ namespace GruppArbeteTDD
                             Console.Write(" ");
                             break;
                         case 1:
-                            Console.Write("W");
+                            Console.Write("#");
                             break;
                         case 2:
                             Console.Write("P");
