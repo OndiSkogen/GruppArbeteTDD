@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GruppArbeteTDD", "GruppArbeteTDD\GruppArbeteTDD.csproj", "{2E2CD9FC-7365-45BB-B335-31CC059DB007}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GruppArbeteTDDTests", "GruppArbeteTDDTests\GruppArbeteTDDTests.csproj", "{B77C8288-1711-417D-8109-A17865EE0C95}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{2E2CD9FC-7365-45BB-B335-31CC059DB007}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E2CD9FC-7365-45BB-B335-31CC059DB007}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E2CD9FC-7365-45BB-B335-31CC059DB007}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B77C8288-1711-417D-8109-A17865EE0C95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B77C8288-1711-417D-8109-A17865EE0C95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B77C8288-1711-417D-8109-A17865EE0C95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B77C8288-1711-417D-8109-A17865EE0C95}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
