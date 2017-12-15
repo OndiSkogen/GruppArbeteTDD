@@ -24,35 +24,27 @@ namespace GruppArbeteTDD
                 {
                     case ConsoleKey.W:
                     case ConsoleKey.UpArrow:
-                        Point tempA = new Point();
-                        tempA.X = player.CurrPos.X;
-                        tempA.Y = player.CurrPos.Y;
-                        tempA.X--;
-                        gb.PlayerMove(player.CurrPos, tempA);
+                        gb.gameBoard[player.GetCharacterX(), player.GetCharacterY()] = 0;
+                        player.MoveUp(gb);
+                        gb.gameBoard[player.GetCharacterX(), player.GetCharacterY()] = 2;
                         break;
                     case ConsoleKey.A:
                     case ConsoleKey.LeftArrow:
-                        Point tempB = new Point();
-                        tempB.X = player.CurrPos.X;
-                        tempB.Y = player.CurrPos.Y;
-                        tempB.X--;
-                        gb.PlayerMove(player.CurrPos, tempB);
+                        gb.gameBoard[player.GetCharacterX(), player.GetCharacterY()] = 0;
+                        player.MoveLeft(gb);
+                        gb.gameBoard[player.GetCharacterX(), player.GetCharacterY()] = 2;
                         break;
                     case ConsoleKey.S:
                     case ConsoleKey.DownArrow:
-                        Point tempC = new Point();
-                        tempC.X = player.CurrPos.X;
-                        tempC.Y = player.CurrPos.Y;
-                        tempC.X--;
-                        gb.PlayerMove(player.CurrPos, tempC);
+                        gb.gameBoard[player.GetCharacterX(), player.GetCharacterY()] = 0;
+                        player.MoveDown(gb);
+                        gb.gameBoard[player.GetCharacterX(), player.GetCharacterY()] = 2;
                         break;
                     case ConsoleKey.D:
                     case ConsoleKey.RightArrow:
-                        Point tempD = new Point();
-                        tempD.X = player.CurrPos.X;
-                        tempD.Y = player.CurrPos.Y;
-                        tempD.X--;
-                        gb.PlayerMove(player.CurrPos, tempD);
+                        gb.gameBoard[player.GetCharacterX(), player.GetCharacterY()] = 0;
+                        player.MoveRight(gb);
+                        gb.gameBoard[player.GetCharacterX(), player.GetCharacterY()] = 2;
                         break;
                 }
                 Console.Clear();

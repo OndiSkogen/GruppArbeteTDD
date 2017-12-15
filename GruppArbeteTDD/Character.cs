@@ -25,26 +25,38 @@ namespace GruppArbeteTDD
             currPos = p;
         }
 
+        public int GetCharacterX()
+        {
+            return currPos.X;
+        }
 
-        public Point IncreaseX()
+        public int GetCharacterY()
+        {
+            return currPos.Y;
+        }
+
+        public void MoveDown(GameBoard gb)
         {
             currPos.X++;
-            
+            if (!gb.OnCollision(currPos)) currPos.X--;
         }
 
-        public void DecreaseX()
+        public void MoveUp(GameBoard gb)
         {
             currPos.X--;
+            if (!gb.OnCollision(currPos)) currPos.X++;
         }
 
-        public void IncreaseY()
+        public void MoveRight(GameBoard gb)
         {
             currPos.Y++;
+            if (!gb.OnCollision(currPos)) currPos.Y--;
         }
 
-        public void DecreaseY()
+        public void MoveLeft(GameBoard gb)
         {
             currPos.Y--;
+            if (!gb.OnCollision(currPos)) currPos.Y++;
         }
     }
 }
