@@ -10,6 +10,7 @@ namespace GruppArbeteTDD
     {
         Point currPos;
         Point prevPos;
+        int treasure = 0;
 
         public Point CurrPos { get => currPos; set => currPos = value; }
         public Point PrevPos { get => prevPos; set => prevPos = value; }
@@ -17,6 +18,18 @@ namespace GruppArbeteTDD
         public Character(Point p)
         {
             currPos = p;
+        }
+
+        public void AddTreasure(GameBoard gb)
+        {
+            treasure++;
+            Console.Beep();
+            if (treasure == 10) gb.RevealDoor();
+        }
+
+        public int GetTreasure()
+        {
+            return treasure;
         }
         
         public void changePos(Point p)
