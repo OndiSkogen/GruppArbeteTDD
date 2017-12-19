@@ -10,6 +10,9 @@ namespace GruppArbeteTDD
     {
         public int[,] gameBoard;
         Random rnd = new Random();
+        TimeSpan now;
+        TimeSpan start;
+        TimeSpan end;
 
         public void CreateGameBoard()
         {
@@ -23,8 +26,8 @@ namespace GruppArbeteTDD
                                            {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1 },
                                            {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1 },
                                            {1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 3, 0, 1, 0, 0, 1, 0, 0, 0, 1 },
-                                           {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1 },
-                                           {1, 3, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
+                                           {1, 0, 0, 0, 0, 0, 1, 0, 5, 5, 5, 5, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1 },
+                                           {1, 3, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 1 },
                                            {1, 0, 0, 0, 0, 0, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 1 },
                                            {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 1, 1, 1, 0, 0, 1 },
                                            {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 1, 0, 0, 0, 0, 1 },
@@ -42,25 +45,25 @@ namespace GruppArbeteTDD
             };
         }
 
-        public void PlayerMove(Point old, Point move)
-        {
-            if (OnCollision(move))
-            {
-                gameBoard[old.X, old.Y] = 0;
-                gameBoard[move.X, move.Y] = 2;
-                old.X = move.X;
-                old.Y = move.Y;
-            }            
-        }
+        //public void PlayerMove(Point old, Point move)
+        //{
+        //    if (OnCollision(move))
+        //    {
+        //        gameBoard[old.X, old.Y] = 0;
+        //        gameBoard[move.X, move.Y] = 2;
+        //        old.X = move.X;
+        //        old.Y = move.Y;
+        //    }            
+        //}
 
         public void RevealDoor()
         {
             gameBoard[rnd.Next(1, 24), 23] = 4;
         }
 
-        public bool OnTreasure(Point p, GameBoard gb)
+        public bool OnTreasure(Point p)
         {
-            if (gb.gameBoard[p.X, p.Y] == 3) return true;
+            if (gameBoard[p.X, p.Y] == 3) return true;
             else return false;
         }
 
@@ -68,6 +71,25 @@ namespace GruppArbeteTDD
         {
             if (gameBoard[p.X, p.Y] == 1) return false;
             else return true;
+        }
+
+        public bool OnLaser(Point p)
+        {
+            if (gameBoard[p.X, p.Y] == 5) return true;
+            else return false;
+        }
+
+        public bool TimeForLaser()
+        {
+            now = DateTime.Now.TimeOfDay;
+            start = new TimeSpan(20, 0, 0);
+            end = new TimeSpan(19, 0, 0);
+            int presentHours = now.Hours;
+
+            if (presentHours % 2 == 0)
+                return true;
+
+            return (now < end || now > start);
         }
 
         public void PrintGameBoard()
@@ -95,7 +117,10 @@ namespace GruppArbeteTDD
                             Console.Write("D");
                             break;
                         case 5:
-                            Console.Write("L");
+                            if (TimeForLaser())
+                                Console.Write("L");
+                            else
+                                Console.Write(" ");
                             break;
                     }
                 }
