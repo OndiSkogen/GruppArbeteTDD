@@ -14,11 +14,16 @@ namespace GruppArbeteTDD
         TimeSpan start;
         TimeSpan end;
 
-        public void CreateGameBoard()
+        public GameBoard()
+        {
+            CreateGameBoard();
+        }
+
+        private void CreateGameBoard()
         {
             gameBoard = new int[,]
             {                              {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-                                           {1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 3, 1, 0, 0, 0, 0, 0, 0, 0, 1, 3, 0, 0, 1 },
+                                           {1, 2, 0, 1, 0, 0, 0, 0, 0, 0, 0, 3, 1, 0, 0, 0, 0, 0, 0, 0, 1, 3, 0, 0, 1 },
                                            {1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1 },
                                            {1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1 },
                                            {1, 0, 0, 1, 3, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1 },
@@ -45,17 +50,6 @@ namespace GruppArbeteTDD
             };
         }
 
-        //public void PlayerMove(Point old, Point move)
-        //{
-        //    if (OnCollision(move))
-        //    {
-        //        gameBoard[old.X, old.Y] = 0;
-        //        gameBoard[move.X, move.Y] = 2;
-        //        old.X = move.X;
-        //        old.Y = move.Y;
-        //    }            
-        //}
-
         public void RevealDoor()
         {
             gameBoard[rnd.Next(1, 24), 23] = 4;
@@ -75,7 +69,7 @@ namespace GruppArbeteTDD
 
         public bool OnLaser(Point p)
         {
-            if (gameBoard[p.X, p.Y] == 5) return true;
+            if (gameBoard[p.X, p.Y] == 5 && TimeForLaser()) return true;
             else return false;
         }
 
@@ -102,25 +96,31 @@ namespace GruppArbeteTDD
                     switch (gameBoard[i, j])
                     {
                         case 0:
-                            Console.Write(" ");
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.Write("  ");
                             break;
                         case 1:
-                            Console.Write("#");
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.Write("# ");
                             break;
                         case 2:
-                            Console.Write("P");
+                            Console.ForegroundColor = ConsoleColor.Cyan;
+                            Console.Write("P ");
                             break;
                         case 3:
-                            Console.Write("T");
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                            Console.Write("T ");
                             break;
                         case 4:
-                            Console.Write("D");
+                            Console.ForegroundColor = ConsoleColor.Magenta;
+                            Console.Write("D ");
                             break;
                         case 5:
+                            Console.ForegroundColor = ConsoleColor.Red;
                             if (TimeForLaser())
-                                Console.Write("L");
+                                Console.Write("L ");
                             else
-                                Console.Write(" ");
+                                Console.Write("  ");
                             break;
                     }
                 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GruppArbeteTDD
 {
-    class Character
+    public class Character
     {
         Point currPos;
         Point prevPos;
@@ -14,6 +14,7 @@ namespace GruppArbeteTDD
 
         public Point CurrPos { get => currPos; set => currPos = value; }
         public Point PrevPos { get => prevPos; set => prevPos = value; }
+        public int Treasure { get => treasure; set => treasure = value; }
 
         public Character(Point p)
         {
@@ -25,19 +26,8 @@ namespace GruppArbeteTDD
             treasure++;
             Console.Beep();
             if (treasure == 10) gb.RevealDoor();
-        }
-
-        public int GetTreasure()
-        {
-            return treasure;
-        }
+        }       
         
-        public void changePos(Point p)
-        {
-            prevPos = currPos;
-            currPos = p;
-        }
-
         public int GetCharacterX()
         {
             return currPos.X;
@@ -50,26 +40,60 @@ namespace GruppArbeteTDD
 
         public void MoveDown(GameBoard gb)
         {
+            gb.gameBoard[GetCharacterX(), GetCharacterY()] = 0;
             currPos.X++;
             if (!gb.OnCollision(currPos)) currPos.X--;
+            CheckPosition(gb, this);
+            gb.gameBoard[GetCharacterX(), GetCharacterY()] = 2;
         }
 
         public void MoveUp(GameBoard gb)
         {
+            gb.gameBoard[GetCharacterX(), GetCharacterY()] = 0;
             currPos.X--;
             if (!gb.OnCollision(currPos)) currPos.X++;
+            CheckPosition(gb, this);
+            gb.gameBoard[GetCharacterX(), GetCharacterY()] = 2;
         }
 
         public void MoveRight(GameBoard gb)
         {
+            gb.gameBoard[GetCharacterX(), GetCharacterY()] = 0;
             currPos.Y++;
             if (!gb.OnCollision(currPos)) currPos.Y--;
+            CheckPosition(gb, this);
+            gb.gameBoard[GetCharacterX(), GetCharacterY()] = 2;
         }
 
         public void MoveLeft(GameBoard gb)
         {
+
+            gb.gameBoard[GetCharacterX(), GetCharacterY()] = 0;
             currPos.Y--;
             if (!gb.OnCollision(currPos)) currPos.Y++;
+            CheckPosition(gb, this);
+            gb.gameBoard[GetCharacterX(), GetCharacterY()] = 2;
+        }
+
+        private void PlayerDied()
+        {
+            Console.Clear();
+            Console.WriteLine("You died!/nPress Enter to exit");
+            Console.ReadKey();
+            Environment.Exit(0);
+        }
+
+        public void CheckPosition(GameBoard gb, Character player)
+        {
+            if (gb.OnTreasure(player.CurrPos)) player.AddTreasure(gb);
+            if (gb.gameBoard[player.GetCharacterX(), player.GetCharacterY()] == 4)
+            {
+                Console.Clear();
+                Console.WriteLine("You won the game!/nPress Enter to exit");
+                Console.ReadKey();
+                Environment.Exit(0);
+            }
+            if (gb.OnLaser(player.CurrPos)) PlayerDied();
         }
     }
 }
